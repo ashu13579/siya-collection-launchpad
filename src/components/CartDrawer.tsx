@@ -1,7 +1,7 @@
 import { X, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartDrawer = () => {
   const { items, isOpen, setCartOpen, removeItem, updateQuantity, totalPrice } = useCartStore();
@@ -102,7 +102,7 @@ const CartDrawer = () => {
                     <span>Total</span>
                     <span>₹{totalPrice()}</span>
                   </div>
-                  <button className="w-full py-3 rounded-full gradient-hero text-primary-foreground font-bold text-sm">
+                  <button onClick={() => { setCartOpen(false); window.location.href = "/checkout"; }} className="w-full py-3 rounded-full gradient-hero text-primary-foreground font-bold text-sm">
                     Proceed to Checkout
                   </button>
                   <p className="text-xs text-center text-muted-foreground">
