@@ -10,7 +10,7 @@ const AdminOrders = () => {
 
   const loadOrders = async () => {
     let query = supabase.from("orders").select("*").order("created_at", { ascending: false });
-    if (filter !== "all") query = query.eq("status", filter);
+    if (filter !== "all") query = query.eq("status", filter as any);
     const { data } = await query;
     setOrders(data || []);
   };

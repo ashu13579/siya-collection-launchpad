@@ -79,19 +79,21 @@ const Checkout = () => {
       city: form.city, state: form.state, pincode: form.pincode,
     };
 
+    const orderPayload: any = {
+      guest_email: !user ? form.email : null,
+      guest_phone: !user ? form.phone : null,
+      payment_method: form.paymentMethod,
+      payment_status: form.paymentMethod === "cod" ? "cod" : "pending",
+      subtotal, shipping_charge: shippingCharge,
+      discount_amount: discount, gst_amount: gstAmount, total,
+      coupon_id: couponId, shipping_address: shippingAddress,
+      gst_number: form.gstNumber || null,
+    };
+    if (user?.id) orderPayload.user_id = user.id;
+
     const { data: order, error } = await supabase
       .from("orders")
-      .insert({
-        user_id: user?.id || null,
-        guest_email: !user ? form.email : null,
-        guest_phone: !user ? form.phone : null,
-        payment_method: form.paymentMethod as any,
-        payment_status: form.paymentMethod === "cod" ? "cod" : "pending",
-        subtotal, shipping_charge: shippingCharge,
-        discount_amount: discount, gst_amount: gstAmount, total,
-        coupon_id: couponId, shipping_address: shippingAddress,
-        gst_number: form.gstNumber || null,
-      })
+      .insert(orderPayload)
       .select()
       .single();
 
