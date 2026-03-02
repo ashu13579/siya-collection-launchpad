@@ -78,6 +78,15 @@ const Header = () => {
             <Link to="/wishlist" className="p-2 rounded-lg hover:bg-muted transition-colors">
               <Heart className="w-5 h-5 text-foreground" />
             </Link>
+            {user ? (
+              <Link to={isAdmin ? "/admin" : "/account"} className="p-2 rounded-lg hover:bg-muted transition-colors">
+                <User className="w-5 h-5 text-foreground" />
+              </Link>
+            ) : (
+              <Link to="/auth" className="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-bold">
+                Sign In
+              </Link>
+            )}
             <button
               className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
