@@ -102,7 +102,7 @@ const CartDrawer = () => {
                     <span>Total</span>
                     <span>₹{totalPrice()}</span>
                   </div>
-                  <button className="w-full py-3 rounded-full gradient-hero text-primary-foreground font-bold text-sm">
+                  <button onClick={() => { setCartOpen(false); window.location.href = "/checkout"; }} className="w-full py-3 rounded-full gradient-hero text-primary-foreground font-bold text-sm">
                     Proceed to Checkout
                   </button>
                   <p className="text-xs text-center text-muted-foreground">
