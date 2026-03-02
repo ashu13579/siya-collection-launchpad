@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Heart, Search, Menu, X, Phone } from "lucide-react";
+import { ShoppingCart, Heart, Menu, X, Phone, User, LogOut } from "lucide-react";
 import { useCartStore } from "@/lib/store";
+import { useAuth } from "@/contexts/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
