@@ -1,7 +1,7 @@
 import { X, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartDrawer = () => {
   const { items, isOpen, setCartOpen, removeItem, updateQuantity, totalPrice } = useCartStore();
